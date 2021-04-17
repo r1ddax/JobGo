@@ -8,10 +8,10 @@ namespace jobgo.classes {
         private Offer Offer { get; set; }
         private string Company { get; set; }
         private string Description { get; set; }
-        private int Salary { get; set; }
+        private string Salary { get; set; }
         private bool Removed { get; set; }
         
-        public Jobs(int id, Offer offer, string company, string description, int salary) {
+        public Jobs(int id, Offer offer, string company, string description, string salary) {
             this.Id             = id;
             this.Offer          = offer;
             this.Company        = company;
