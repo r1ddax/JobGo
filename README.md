@@ -23,10 +23,14 @@
 This application aims to help people find jobs and companies to post their offers.
 
 ## Functionalities
-:heavy_check_mark: Create "Job Offer" objects 0  
+:heavy_check_mark: Create of CRUD.
+:heavy_check_mark: Read of CRUD.
+:heavy_check_mark: Update of CRUD.
+:heavy_check_mark: Delete of CRUD.
+:heavy_check_mark: Try, catch and expection.
 
 ## Deploy
-##### When this is working I'll add prints: ```![PrintApp](./pictures/image.png)```
+![OutputExample](./img/output_ex.png)
 
 ## Requirements
 [![Dotnet](https://img.shields.io/static/v1?label=DOTNET&style=plastic&message=GET&color=blue&style=for-the-badge&logo=.NET)](https://dotnet.microsoft.com/download)

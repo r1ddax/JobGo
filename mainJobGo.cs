@@ -58,62 +58,133 @@ namespace jobgo
             string _useroption = Console.ReadLine();
             return _useroption;
         }
-        private static void listJobs() {
-            Console.WriteLine("Job List");
-            var list = job_repository.List();
-
-            if (list.Count == 0) {
-                Console.WriteLine("Jobs didn't find ! ");
-                Console.WriteLine("Try later again :)");
-            }
-
-            foreach (var j in list) {
-                Console.WriteLine($"#ID {j.Id}, #Offer {j.returnOffer()}");
-            }
-        }
-        private static void addJobs() {
-            Console.WriteLine("Add Job");
-
+        private static int getOffer() {
             // print enum values:
             foreach (int index in Enum.GetValues(typeof(Offer))) {
                 Console.WriteLine($"{index}:{Enum.GetName(typeof(Offer), index)}");
             }
-
             Console.WriteLine("Enter your offer index: ");
             int getOffer = int.Parse(Console.ReadLine());
             Console.WriteLine();
 
+            return getOffer;
+        }
+        private static string getCompany() {
             Console.WriteLine("Enter your company name: ");
             string getCompany = Console.ReadLine();
             Console.WriteLine();
 
+            return getCompany;
+        }
+        private static string getDescription() {
             Console.WriteLine("Type a little bit about job offer: ");
             string getDesc = Console.ReadLine();
             Console.WriteLine();
 
+            return getDesc;
+        }
+        private static float getSalary() {
             Console.WriteLine("Enter salary");
-            string getSalary = Console.ReadLine();
+            float getSalary = float.Parse(Console.ReadLine());
             Console.WriteLine();
 
-            Jobs newJobOffer = new Jobs(id: job_repository.nextId(),
-                                        (Offer)getOffer,
-                                        getCompany,
-                                        getDesc,
-                                        getSalary
+            return getSalary;
+        }
+        private static void listJobs() {
+            var list = job_repository.List();
+            if (list.Count == 0) {
+                Console.WriteLine("Jobs didn't find ! ");
+                Console.WriteLine("Try later again or add one.");
+            }else{
+                Console.WriteLine("Job List");
+                foreach (var j in list) {
+                    if (job_repository.returnById(j.Id).returnRemove() == false) {
+                        Console.WriteLine($"#ID {j.Id}, Offer: {j.returnOffer()}");
+                    } else {
+                        Console.WriteLine($"#ID {j.Id}, Offer: REMOVED!");
+                    }
+                }
+            }
+            Console.WriteLine();
+        }
+        private static void addJobs() {
+            Console.WriteLine("Add Job");
+            Jobs newJobOffer = new Jobs(job_repository.nextId(),
+                                        (Offer)getOffer(),
+                                        getCompany(),
+                                        getDescription(),
+                                        getSalary()
                                         );
 
             job_repository.Adding(newJobOffer);
         }
 
         private static void removeJobs() {
-
+            try {
+                var list = job_repository.List();
+                if (list.Count != 0) {
+                    listJobs();
+                    Console.WriteLine("Enter the id number that you want delete/remove:");
+                    int getId = int.Parse(Console.ReadLine());
+                    if (job_repository.returnById(getId).returnRemove() == false) {
+                        job_repository.Rm(getId); // Removing
+                        Console.WriteLine();
+                    }else{
+                        Console.WriteLine("You can't remove deleted job offer. It has already been removed!");
+                    }
+                }else{
+                    Console.WriteLine("There isn't jobs.");
+                }
+            } catch (System.ArgumentOutOfRangeException) {
+            Console.WriteLine("This index doesn't exists");
+            }
         }
 
         private static void updateJobs() {
+            try{
+                var list = job_repository.List();
+                if (list.Count != 0) {
+                    listJobs();
+                    Console.WriteLine("Enter the id number that you want update:");
+                    int getId = int.Parse(Console.ReadLine());
+                    if (job_repository.returnById(getId).returnRemove() == false) {
+                        Console.WriteLine();
 
+                        Jobs upadatedJobOffer = new Jobs(getId,
+                                                    (Offer)getOffer(),
+                                                    getCompany(),
+                                                    getDescription(),
+                                                    getSalary()
+                                                    );
+
+                        job_repository.Update(getId, upadatedJobOffer);
+                    }else{
+                        Console.WriteLine("You can't update deleted offers. Create a new!");
+                    }
+                }else{
+                    Console.WriteLine("There isn't jobs.");
+                }
+            } catch (System.ArgumentOutOfRangeException) {
+            Console.WriteLine("This index doesn't exists");
+            }
         }
         private static void viewJobs() {
-
+            try{
+                var list = job_repository.List();
+                if (list.Count != 0) {
+                    listJobs();
+                    Console.WriteLine("Enter the id number that you want read/view:");
+                    int getId = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
+                    var job = job_repository.returnById(getId);
+                    Console.WriteLine(job.thisSting());
+                    Console.WriteLine();
+                }else{
+                    Console.WriteLine("There isn't jobs.");
+                }
+            } catch (System.ArgumentOutOfRangeException) {
+            Console.WriteLine("This index doesn't exists");
+            }
         }
 
     // end class mainJobGo:    

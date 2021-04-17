@@ -8,10 +8,10 @@ namespace jobgo.classes {
         private Offer Offer { get; set; }
         private string Company { get; set; }
         private string Description { get; set; }
-        private string Salary { get; set; }
+        private float Salary { get; set; }
         private bool Removed { get; set; }
         
-        public Jobs(int id, Offer offer, string company, string description, string salary) {
+        public Jobs(int id, Offer offer, string company, string description, float salary) {
             this.Id             = id;
             this.Offer          = offer;
             this.Company        = company;
@@ -26,6 +26,7 @@ namespace jobgo.classes {
             this_string += $"Company: {Company}" + Environment.NewLine;
             this_string += $"Description: {Description}" + Environment.NewLine;
             this_string += $"Salary: {Salary}" + Environment.NewLine;
+            this_string += $"Deleted: {Removed}" + Environment.NewLine;
             return this_string;
         }
 
@@ -39,6 +40,10 @@ namespace jobgo.classes {
 
         public void thisRemove() {
             this.Removed = true;
+        }
+
+        public bool returnRemove(){
+            return this.Removed;
         }
     //end jobs class.
     }
