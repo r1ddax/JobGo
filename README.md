@@ -4,9 +4,9 @@
 </br>
 
 <p align="center">
-  <a href="#" target="_blank"><img src="https://img.shields.io/github/issues/r1ddax/Vagaflix"/></a>
-  <a href="#" target="_blank"><img src="https://img.shields.io/github/forks/r1ddax/Vagaflix"/></a>
-  <a href="#" target="_blank"><img src="https://img.shields.io/github/stars/r1ddax/Vagaflix"/></a>
+  <a href="#" target="_blank"><img src="https://img.shields.io/github/issues/r1ddax/JobGo"/></a>
+  <a href="#" target="_blank"><img src="https://img.shields.io/github/forks/r1ddax/JobGo"/></a>
+  <a href="#" target="_blank"><img src="https://img.shields.io/github/stars/r1ddax/JobGo"/></a>
 </p>
 
 ## Index
@@ -36,7 +36,7 @@ Running application:
 
 Clone this repository
 ```
-git clone https://github.com/r1ddax/Vagaflix.git
+git clone https://github.com/r1ddax/JobGo.git
 ```
 Inside the directory who you cloned, run this code:
 ```
